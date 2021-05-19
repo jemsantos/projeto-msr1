@@ -3,39 +3,37 @@
  */
 package com.algaworks.algalog.api.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.algaworks.algalog.domain.model.Client;
+import com.algaworks.algalog.domain.repository.ClientRepository;
+
+import lombok.AllArgsConstructor;
 
 /**
  * @author José Eustaquio
  */
+@AllArgsConstructor
 @RestController
 public class ClientController {
 
+	private ClientRepository clientRepository;
+
 	@GetMapping("/clientes")
 	public List<Client> listar() {
-		Client client1 = new Client();
-		client1.setId(1L);
-		client1.setNome("João");
-		client1.setTelefone("34 99999-1111");
-		client1.setEmail("joaodascouves@algaworks.com");
-		
-		Client client2 = new Client();
-		client2.setId(2L);
-		client2.setNome("Maria");
-		client2.setTelefone("11 97777-2222");
-		client2.setEmail("mariadasilva@algaworks.com");
-		
-		return Arrays.asList(client1, client2);
+		return clientRepository.findAll();
 	}
-	
-	
+
+	// BUSCAR POR NOME: "return clientRepository.findByName("João da Silva");"
+	// BUSCAR COM LIKE: "return clientRepository.findByNameContaining("a");"
+
 	/*
+	 * insert into cliente (nome, email, fone) values ('João da Silva', 'joao.silva@alga.com', '34 94989-0090');
+	 * insert into cliente (nome, email, fone) values ('Maria Abadia', 'mariaabadia@alga.com', '33 94959-0490');
+	 * 
 	USANDO O OPTIONAL e BIGDECIMAL
 
 	Optional<Produto> produtoOptional = catalogo.buscarOptional("Picanha 1kg");
