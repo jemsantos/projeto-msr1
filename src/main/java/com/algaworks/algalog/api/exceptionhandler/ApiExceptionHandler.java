@@ -25,7 +25,7 @@ import com.algaworks.algalog.domain.exception.NegocioException;
 import lombok.AllArgsConstructor;
 
 /**
- * @author Jose Eustaquio Muniz
+ * @author José Eustaquio Muniz
  *
  */
 @AllArgsConstructor
@@ -47,7 +47,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
 			campos.add(new Problema.Campo(nome, mensagem));
 		}
-		
+
 		Problema problema = new Problema();
 		problema.setStatus(status.value());
 		problema.setDataHora(LocalDateTime.now());
@@ -71,42 +71,5 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		return handleExceptionInternal(ex, problema, new HttpHeaders(),
 				status, request);
 	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -26,7 +26,7 @@ import com.algaworks.algalog.domain.service.CatalogoClientService;
 import lombok.AllArgsConstructor;
 
 /**
- * @author José Eustaquio
+ * @author José Eustaquio Muniz
  */
 @AllArgsConstructor
 @RestController
@@ -36,7 +36,7 @@ public class ClientController {
 	private ClientRepository clientRepository;
 	private CatalogoClientService catalogoClientService;
 
-	@GetMapping("")
+	@GetMapping
 	public List<Client> listar() {
 		return clientRepository.findAll();
 	}
