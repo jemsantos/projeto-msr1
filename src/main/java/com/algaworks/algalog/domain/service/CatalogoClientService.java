@@ -13,7 +13,7 @@ import com.algaworks.algalog.domain.repository.ClientRepository;
 import lombok.AllArgsConstructor;
 
 /**
- * @author Jose Eustaquio Muniz
+ * @author José Eustaquio Muniz
  *
  */
 @AllArgsConstructor
@@ -21,7 +21,12 @@ import lombok.AllArgsConstructor;
 public class CatalogoClientService {
 
 	private ClientRepository clientRepository;
-	
+
+	public Client buscar(Long clienteId) {
+		return clientRepository.findById(clienteId)
+				.orElseThrow(() -> new NegocioException("Cliene não encontrado"));
+	}
+
 	@Transactional
 	public Client salvar(Client cliente) {
 		boolean emailEmUso = clientRepository.findByEmail(cliente.getEmail())
@@ -39,4 +44,5 @@ public class CatalogoClientService {
 	public void excluir(Long clienteId) {
 		clientRepository.deleteById(clienteId);
 	}
+
 }

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.algaworks.algalog.domain.model.Client;
 
 /**
- * @author José Eustaquio
+ * @author José Eustaquio Muniz
  *
  */
 @Repository

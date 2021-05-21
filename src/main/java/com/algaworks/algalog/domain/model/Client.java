@@ -18,7 +18,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author José Eustaquio
+ * @author José Eustaquio Muniz
  *
  */
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
