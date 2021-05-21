@@ -71,10 +71,11 @@ public class ClientController {
 	@PutMapping("/{clienteId}")
 	public  ResponseEntity<Client> atualizar( @PathVariable Long clienteId,
 			@Valid @RequestBody Client cliente ) {
+
 		if (!clientRepository.existsById(clienteId)) {
 			return ResponseEntity.notFound().build();
 		}
-		
+
 		cliente.setId(clienteId);
 		Client clienteSalvo = catalogoClientService.salvar(cliente);
 		
