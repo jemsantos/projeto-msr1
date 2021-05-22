@@ -11,7 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.algaworks.algalog.domain.ValidationGroups;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -28,6 +31,7 @@ import lombok.Setter;
 @Table(name = "cliente")
 public class Client {
 
+	@NotNull(groups = ValidationGroups.ClientId.class)
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,4 +51,5 @@ public class Client {
 	@Size(max = 20)
 	@Column(name = "fone")
 	private String telefone;
+
 }

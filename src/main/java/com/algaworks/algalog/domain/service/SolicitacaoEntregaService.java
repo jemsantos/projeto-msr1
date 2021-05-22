@@ -16,7 +16,7 @@ import com.algaworks.algalog.domain.repository.EntregaRepository;
 import lombok.AllArgsConstructor;
 
 /**
- * @author Jose Eustaquio Muniz
+ * @author José Eustaquio Muniz
  *
  */
 @AllArgsConstructor

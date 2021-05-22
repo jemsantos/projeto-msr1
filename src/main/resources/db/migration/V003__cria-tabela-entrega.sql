@@ -16,4 +16,4 @@ create table entrega(
 );
 
 alter table entrega add constraint fk_entrega_cliente
-foreign key (cliente_it) references cliente (id);
+foreign key (cliente_id) references cliente (id);

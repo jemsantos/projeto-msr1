@@ -141,7 +141,7 @@ public class ClientController {
 	
 	
 	
-	QDO PRECISA PREGAR UM ATRIBUTO DO OBJETO:
+	QDO PRECISA PEGAR UM ATRIBUTO DO OBJETO:
 	CatalogoProdutos catalogo = new CatalogoProdutos();
 	
 	BigDecimal preco = catologo.buscarPreco("Picanha 12kg").orElse(BigDecimal.ZERO);

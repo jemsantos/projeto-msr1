@@ -24,19 +24,19 @@ public class CatalogoClientService {
 
 	public Client buscar(Long clienteId) {
 		return clientRepository.findById(clienteId)
-				.orElseThrow(() -> new NegocioException("Cliene não encontrado"));
+				.orElseThrow(() -> new NegocioException("Cliente não encontrado"));
 	}
 
 	@Transactional
 	public Client salvar(Client cliente) {
-		boolean emailEmUso = clientRepository.findByEmail(cliente.getEmail())
+		/* boolean emailEmUso = clientRepository.findByEmail(cliente.getEmail())
 				.stream()
 				.anyMatch(clienteExistente -> !clienteExistente.equals(cliente));
 		
 		if (emailEmUso) {
 			throw new NegocioException("Já existe um cliente cadastrado com esse e-mail");
-		}
-		
+		} VALIDAÇÃO ESTÁ COM ERRO NO STREAM... */
+
 		return clientRepository.save(cliente);
 	}
 	

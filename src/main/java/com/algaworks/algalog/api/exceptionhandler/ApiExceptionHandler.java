@@ -34,9 +34,21 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	private MessageSource messageSource;
 	
+	private Problema assembleNewProblem(HttpStatus status, String title) {
+
+		Problema problema = new Problema();
+		problema.setStatus(status.value());
+		problema.setDataHora(LocalDateTime.now());
+		problema.setTitulo(title);
+
+		return problema;
+
+	}
+	
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
+
 		List<Problema.Campo> campos = new ArrayList<>();
 		
 		// usar stream parar popular é mais adequado...
@@ -48,28 +60,24 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 			campos.add(new Problema.Campo(nome, mensagem));
 		}
 
-		Problema problema = new Problema();
-		problema.setStatus(status.value());
-		problema.setDataHora(LocalDateTime.now());
-		problema.setTitulo("Um ou mais campos estão inválidos. Faça o preenchimento correto"
-				+ "e tente novamente");
+		String title = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente";
+		Problema problema = assembleNewProblem(status, title);
 		problema.setCampos(campos);
-		
+
 		return handleExceptionInternal(ex, problema, headers, status, request);
+
 	}
 	
 	@ExceptionHandler(NegocioException.class)
 	public ResponseEntity<Object> handleNegocio(NegocioException ex,
 			WebRequest request) {
+
 		HttpStatus status = HttpStatus.BAD_REQUEST;
+
+		Problema problema = assembleNewProblem(status, ex.getMessage());
 		
-		Problema problema = new Problema();
-		problema.setStatus(status.value());
-		problema.setDataHora(LocalDateTime.now());
-		problema.setTitulo(ex.getMessage());
-		
-		return handleExceptionInternal(ex, problema, new HttpHeaders(),
-				status, request);
+		return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
+
 	}
 
 }

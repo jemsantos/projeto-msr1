@@ -26,7 +26,8 @@ public class Problema {
 	private LocalDateTime dataHora;
 	private String titulo;
 	private List<Campo> campos;
-	
+
+
 	@AllArgsConstructor
 	@Getter
 	public static class Campo {
@@ -35,4 +36,5 @@ public class Problema {
 		private String mensagem;
 
 	}
+
 }
