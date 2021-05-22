@@ -43,10 +43,10 @@ public class Entrega {
 	private Long id;
 
 	@Valid
-	@ConvertGroup(from = Default.class, to =  ValidationGroups.ClientId.class)
+	@ConvertGroup(from = Default.class, to =  ValidationGroups.ClienteId.class)
 	@NotNull
 	@ManyToOne
-	private Client cliente;
+	private Cliente cliente;
 
 	@Valid
 	@NotNull

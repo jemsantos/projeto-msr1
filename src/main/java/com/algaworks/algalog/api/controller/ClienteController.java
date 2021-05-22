@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.algaworks.algalog.domain.model.Client;
-import com.algaworks.algalog.domain.repository.ClientRepository;
-import com.algaworks.algalog.domain.service.CatalogoClientService;
+import com.algaworks.algalog.domain.model.Cliente;
+import com.algaworks.algalog.domain.repository.ClienteRepository;
+import com.algaworks.algalog.domain.service.CatalogoClienteService;
 
 import lombok.AllArgsConstructor;
 
@@ -31,25 +31,25 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/clientes")
-public class ClientController {
+public class ClienteController {
 
-	private ClientRepository clientRepository;
-	private CatalogoClientService catalogoClientService;
+	private ClienteRepository clienteRepository;
+	private CatalogoClienteService catalogoClienteService;
 
 	@GetMapping
-	public List<Client> listar() {
-		return clientRepository.findAll();
+	public List<Cliente> listar() {
+		return clienteRepository.findAll();
 	}
 
 	@GetMapping("/{clienteId}")
-	public ResponseEntity<Client> buscar(@PathVariable Long clienteId) {
+	public ResponseEntity<Cliente> buscar(@PathVariable Long clienteId) {
 		// opção 03:
-		return clientRepository.findById(clienteId)
+		return clienteRepository.findById(clienteId)
 				.map( cliente -> ResponseEntity.ok(cliente) )
 				.orElse( ResponseEntity.notFound().build() );
 		
 		
-		//Optional<Client> cliente = clientRepository.findById(clienteId);
+		//Optional<Cliente> cliente = clienteRepository.findById(clienteId);
 		
 		// opção 01:
 		   // return cliente.orElse(null);
@@ -63,21 +63,23 @@ public class ClientController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Client adicionar( @Valid @RequestBody Client cliente ) {
-		return catalogoClientService.salvar(cliente);
+	public Cliente adicionar( @Valid @RequestBody Cliente cliente ) {
+
+		return catalogoClienteService.salvar(cliente);
+
 	}
 	
 	
 	@PutMapping("/{clienteId}")
-	public  ResponseEntity<Client> atualizar( @PathVariable Long clienteId,
-			@Valid @RequestBody Client cliente ) {
+	public  ResponseEntity<Cliente> atualizar( @PathVariable Long clienteId,
+			@Valid @RequestBody Cliente cliente ) {
 
-		if (!clientRepository.existsById(clienteId)) {
+		if (!clienteRepository.existsById(clienteId)) {
 			return ResponseEntity.notFound().build();
 		}
 
 		cliente.setId(clienteId);
-		Client clienteSalvo = catalogoClientService.salvar(cliente);
+		Cliente clienteSalvo = catalogoClienteService.salvar(cliente);
 		
 		return ResponseEntity.ok(clienteSalvo);
 	}
@@ -85,13 +87,15 @@ public class ClientController {
 	
 	@DeleteMapping("/{clienteId}")
 	public ResponseEntity<Void> remover( @PathVariable Long clienteId  ) {
-		if (!clientRepository.existsById(clienteId)) {
+
+		if (!clienteRepository.existsById(clienteId)) {
 			return ResponseEntity.notFound().build();
 		}
 		
-		catalogoClientService.excluir(clienteId);
+		catalogoClienteService.excluir(clienteId);
 		
 		return ResponseEntity.noContent().build();
+
 	}
 	
 	
@@ -103,8 +107,8 @@ public class ClientController {
 	
 	
 
-	// BUSCAR POR NOME: "return clientRepository.findByName("João da Silva");"
-	// BUSCAR COM LIKE: "return clientRepository.findByNameContaining("a");"
+	// BUSCAR POR NOME: "return clienteRepository.findByName("João da Silva");"
+	// BUSCAR COM LIKE: "return clienteRepository.findByNameContaining("a");"
 
 	/*
 	 * insert into cliente (nome, email, fone) values ('João da Silva', 'joao.silva@alga.com', '34 94989-0090');

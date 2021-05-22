@@ -29,9 +29,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "cliente")
-public class Client {
+public class Cliente {
 
-	@NotNull(groups = ValidationGroups.ClientId.class)
+	@NotNull(groups = ValidationGroups.ClienteId.class)
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +40,7 @@ public class Client {
 	@NotBlank
 	@Size(max = 60)
 	@Column(name = "nome")
-	private String name;
+	private String nome;
 
 	@NotBlank
 	@Email

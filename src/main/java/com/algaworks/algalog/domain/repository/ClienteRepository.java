@@ -9,18 +9,18 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.algaworks.algalog.domain.model.Client;
+import com.algaworks.algalog.domain.model.Cliente;
 
 /**
  * @author José Eustaquio Muniz
  *
  */
 @Repository
-public interface ClientRepository extends JpaRepository<Client, Long> {
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
-	List<Client> findByName(String name);
-	List<Client> findByNameContaining(String name);
+	List<Cliente> findByNome(String nome);
+	List<Cliente> findByNomeContaining(String nome);
 
-	Optional<Client> findByEmail(String email);
+	Optional<Cliente> findByEmail(String email);
 
 }

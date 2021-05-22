@@ -9,5 +9,5 @@ package com.algaworks.algalog.domain;
  */
 public interface ValidationGroups {
 
-	public interface ClientId {}
+	public interface ClienteId {}
 }

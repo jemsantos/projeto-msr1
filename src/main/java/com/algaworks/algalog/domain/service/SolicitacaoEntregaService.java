@@ -8,7 +8,7 @@ import java.time.OffsetDateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.algaworks.algalog.domain.model.Client;
+import com.algaworks.algalog.domain.model.Cliente;
 import com.algaworks.algalog.domain.model.Entrega;
 import com.algaworks.algalog.domain.model.StatusEntrega;
 import com.algaworks.algalog.domain.repository.EntregaRepository;
@@ -23,13 +23,13 @@ import lombok.AllArgsConstructor;
 @Service
 public class SolicitacaoEntregaService {
 
-	private CatalogoClientService catalogoClientService;
+	private CatalogoClienteService catalogoClienteService;
 	private EntregaRepository entregaRepository;
 	
 	@Transactional
 	public Entrega solicitar(Entrega entrega) {
 
-		Client cliente = catalogoClientService.buscar(entrega.getCliente().getId());
+		Cliente cliente = catalogoClienteService.buscar(entrega.getCliente().getId());
 
 		entrega.setCliente(cliente);
 		entrega.setStatus(StatusEntrega.PENDENTE);
