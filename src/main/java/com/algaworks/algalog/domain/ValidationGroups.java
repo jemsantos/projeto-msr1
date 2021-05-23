@@ -4,10 +4,11 @@
 package com.algaworks.algalog.domain;
 
 /**
- * @author Jose Eustaquio Muniz
+ * @author José Eustaquio Muniz
  *
  */
 public interface ValidationGroups {
 
 	public interface ClienteId {}
+
 }

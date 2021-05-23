@@ -37,4 +37,3 @@ public class Ocorrencia {
 	private OffsetDateTime dataRegistro;
 
 }
-//Ok

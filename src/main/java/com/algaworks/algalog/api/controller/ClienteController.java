@@ -38,7 +38,9 @@ public class ClienteController {
 
 	@GetMapping
 	public List<Cliente> listar() {
+
 		return clienteRepository.findAll();
+
 	}
 
 	@GetMapping("/{clienteId}")
@@ -69,7 +71,6 @@ public class ClienteController {
 
 	}
 	
-	
 	@PutMapping("/{clienteId}")
 	public  ResponseEntity<Cliente> atualizar( @PathVariable Long clienteId,
 			@Valid @RequestBody Cliente cliente ) {
@@ -82,6 +83,7 @@ public class ClienteController {
 		Cliente clienteSalvo = catalogoClienteService.salvar(cliente);
 		
 		return ResponseEntity.ok(clienteSalvo);
+
 	}
 	
 	

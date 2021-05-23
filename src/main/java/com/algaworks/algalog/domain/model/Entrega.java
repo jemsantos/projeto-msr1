@@ -18,15 +18,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.Valid;
+
+/* import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.groups.ConvertGroup;
-import javax.validation.groups.Default;
+import javax.validation.groups.Default; */
 
-import com.algaworks.algalog.domain.ValidationGroups;
+// import com.algaworks.algalog.domain.ValidationGroups;
 import com.algaworks.algalog.domain.exception.NegocioException;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
+/* import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access; */
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -47,31 +49,31 @@ public class Entrega {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Valid
+	/* @Valid
 	@ConvertGroup(from = Default.class, to =  ValidationGroups.ClienteId.class)
-	@NotNull
+	@NotNull */
 	@ManyToOne
 	private Cliente cliente;
 
-	@Valid
-	@NotNull
+	/* @Valid
+	@NotNull */
 	@Embedded
 	private Destinatario destinatario;
 	
-	@NotNull
+	// @NotNull
 	private BigDecimal taxa;
 	
 	@OneToMany(mappedBy = "entrega", cascade = CascadeType.ALL)
 	private List<Ocorrencia> ocorrencias = new ArrayList<>();
 	
-	@JsonProperty(access = Access.READ_ONLY)
+	// @JsonProperty(access = Access.READ_ONLY)
 	@Enumerated(EnumType.STRING)
 	private StatusEntrega status;
 	
-	@JsonProperty(access = Access.READ_ONLY)
+	// @JsonProperty(access = Access.READ_ONLY)
 	private OffsetDateTime dataPedido;
 
-	@JsonProperty(access = Access.READ_ONLY)
+	// @JsonProperty(access = Access.READ_ONLY)
 	private OffsetDateTime dataFinalizacao;
 
 
